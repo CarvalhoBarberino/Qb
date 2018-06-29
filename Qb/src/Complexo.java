@@ -1,18 +1,18 @@
 
-public class Complexo {
+public class Complexo{
 	double real;
 	double imaginario;
 	double norma;
 	double fase;
 	//****
-	public Complexo() {
+	public Complexo(){
 		real = 0;
 		imaginario = 0;
 		norma = 0;
 		fase = 0;
 	}
 	//****
-	public Complexo(double r, double i) {
+	public Complexo(double r, double i){
 		real = r;
 		imaginario = i;
 		norma = norma();
@@ -21,21 +21,24 @@ public class Complexo {
 		}else {fase = 0;}
 	}
 	//****
-	public static Complexo soma(Complexo a, Complexo b) {
+	public static Complexo soma(Complexo a, Complexo b){
 		return(new Complexo(a.real + b.real, a.imaginario + b.imaginario));
 	}
 	//****
-	public static Complexo multiplicacao(Complexo a, Complexo b) {
+	public static Complexo multiplicacao(Complexo a, Complexo b){
 		return(new Complexo((a.real*b.real - a.imaginario*b.imaginario), (a.real*b.imaginario + a.imaginario*b.real)));
 	}
 	//****
-	public void mostrar() {
+	public String getString(){
 		if(imaginario >= 0) {
-			System.out.println(real + " + i*" + imaginario);
+			return(real + " + i*" + imaginario);
 		}else {
-			System.out.println(real + " - i*" + (-imaginario));
+			return(real + " - i*" + (-imaginario));
 		}
 		
+	}
+	public void mostrar(){
+		System.out.println(getString());
 	}
 	//****
 	public double norma() {

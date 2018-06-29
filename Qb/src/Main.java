@@ -1,6 +1,17 @@
 
-public class Main {
-	public static void main(String args[]) {
+public class Main{
+	public static void main(String args[]){
+		Matriz x = new Matriz(2, 2);
+		x.mostrar();
+		x.elemento[1][1] = new Complexo(3, 4);
+		x.mostrar();
+		Matriz y = x.clone();
+		y.mostrar();
+		y.elemento[1][1] = new Complexo(1, 1);
+		x.mostrar();
+		y.mostrar();
+		
+		/*
 		System.out.println("Qual a raiz quadrada de -1?");
 		Complexo menos1 = new Complexo(-1, 0);
 		System.out.print("Resposta: ");
@@ -14,6 +25,6 @@ public class Main {
 		y.mostrarPolar();
 		Complexo z = y.pow(0.5);
 		z.mostrar();
-		z.mostrarPolar();
+		z.mostrarPolar();*/
 	}
 }
