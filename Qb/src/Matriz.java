@@ -39,4 +39,18 @@ public class Matriz{
 		}
 		return retornar;
 	}
+	//****
+	public static Matriz multiplicacao(Matriz a, Matriz b){
+		Matriz resultado = new Matriz(a.numeroDeLinha, b.numeroDeColuna);
+		for(int l = 0; l < a.numeroDeLinha; l++){
+			for(int c = 0; c < b.numeroDeColuna; c++){
+				Complexo celula = new Complexo();
+				for(int i = 0; i < a.numeroDeColuna; i++){
+					celula = Complexo.soma(celula, Complexo.multiplicacao(a.elemento[l][i], b.elemento[i][c]));
+				}
+				resultado.elemento[l][c] = celula;
+			}
+		}
+		return resultado;
+	}
 }

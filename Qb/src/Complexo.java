@@ -35,7 +35,6 @@ public class Complexo{
 		}else {
 			return(real + " - i*" + (-imaginario));
 		}
-		
 	}
 	public void mostrar(){
 		System.out.println(getString());

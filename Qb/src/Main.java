@@ -1,6 +1,28 @@
 
 public class Main{
 	public static void main(String args[]){
+		Matriz a = new Matriz(2, 3);
+		a.elemento[0][0] = new Complexo(1,0);
+		a.elemento[0][1] = new Complexo(2,0);
+		a.elemento[0][2] = new Complexo(3,0);
+		a.elemento[1][0] = new Complexo(4,0);
+		a.elemento[1][1] = new Complexo(5,0);
+		a.elemento[1][2] = new Complexo(6,0);
+		Matriz b = new Matriz(3, 2);
+		b.elemento[0][0] = new Complexo(7,0);
+		b.elemento[0][1] = new Complexo(10,0);
+		b.elemento[1][0] = new Complexo(8,0);
+		b.elemento[1][1] = new Complexo(11,0);
+		b.elemento[2][0] = new Complexo(9,0);
+		b.elemento[2][1] = new Complexo(12,0);
+		a.mostrar();
+		b.mostrar();
+		Matriz c = Matriz.multiplicacao(a, b);
+		c.mostrar();
+		c = Matriz.multiplicacao(b, a);
+		c.mostrar();
+		
+		/*
 		Matriz x = new Matriz(2, 2);
 		x.mostrar();
 		x.elemento[1][1] = new Complexo(3, 4);
@@ -11,7 +33,7 @@ public class Main{
 		x.mostrar();
 		y.mostrar();
 		
-		/*
+		
 		System.out.println("Qual a raiz quadrada de -1?");
 		Complexo menos1 = new Complexo(-1, 0);
 		System.out.print("Resposta: ");
