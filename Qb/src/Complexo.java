@@ -48,11 +48,11 @@ public class Complexo{
 		System.out.println(norma + " < " + fase*180/Math.PI);
 	}
 	//****
-	public void conjugado(){
+	public void conjugar(){
 		imaginario = -imaginario;
 	}
 	//****
-	public Complexo conjugado(Complexo x){
+	public static Complexo conjugado(Complexo x){
 		return(new Complexo(x.real, -x.imaginario));
 	}
 	//****
@@ -73,5 +73,18 @@ public class Complexo{
 	//****
 	public Complexo pow(double e){
 		return(Complexo.newPolar(Math.pow(norma, e), e * fase));
+	}
+	//****
+	public boolean equals(Complexo Arg){
+		if((real == Arg.real) && (imaginario == Arg.imaginario)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	//****
+	public Complexo negativo(){
+		return(new Complexo(-real, -imaginario));
 	}
 }

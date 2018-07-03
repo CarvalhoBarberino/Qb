@@ -1,6 +1,31 @@
 
 public class Main{
 	public static void main(String args[]){
+		Matriz a = new Matriz(4, 4);
+		a.elemento[0][0] = new Complexo(2, 0);
+		a.elemento[0][1] = new Complexo(5, 0);
+		a.elemento[0][2] = new Complexo(2, 0);
+		a.elemento[0][3] = new Complexo(1, 0);
+		a.elemento[1][0] = new Complexo(2, 0);
+		a.elemento[1][1] = new Complexo(1, 0);
+		a.elemento[1][2] = new Complexo(0, 0);
+		a.elemento[1][3] = new Complexo(2, 0);
+		a.elemento[2][0] = new Complexo(-5, 0);
+		a.elemento[2][1] = new Complexo(1, 0);
+		a.elemento[2][2] = new Complexo(-2, 0);
+		a.elemento[2][3] = new Complexo(0, 0);
+		a.elemento[3][0] = new Complexo(7, 0);
+		a.elemento[3][1] = new Complexo(6, 0);
+		a.elemento[3][2] = new Complexo(4, 0);
+		a.elemento[3][3] = new Complexo(7, 0);
+		Matriz b = Matriz.chio(a);
+		b.mostrar();
+		b = Matriz.chio(b);
+		b.mostrar();
+		b = Matriz.chio(b);
+		b.mostrar();
+		
+		/*
 		Matriz a = new Matriz(2, 2);
 		a.elemento[0][0] = new Complexo(1, 0);
 		a.elemento[0][1] = new Complexo(2, 0);
@@ -14,7 +39,7 @@ public class Main{
 		b.elemento[2][0] = new Complexo(9, 0);
 		b.elemento[2][1] = new Complexo(10, 0);
 		Matriz c = Matriz.produtoTensorial(a, b);
-		c.mostrar();
+		c.mostrar();*/
 		
 		/*
 		Matriz a = new Matriz(2, 3);
