@@ -71,24 +71,25 @@ public class Matriz{
 	public static Matriz chio(Matriz x){//Este metodo usa a regra de chio para retornar uma matriz de tamanho menor porem com a mesma determinante
 		Complexo menos1 = new Complexo(-1, 0);
 		int linhaOtima = 0, colunaOtima = 0;
-		double aux = Complexo.soma(x.elemento[0][0], menos1).norma / x.elemento[0][0].norma;
+		double aux = Complexo.soma(x.elemento[0][0], menos1).norma * Complexo.soma(x.elemento[0][0], menos1).norma * Complexo.soma(x.elemento[0][0], new Complexo(1, 0)).norma / x.elemento[0][0].norma;
+		System.out.println(linhaOtima + "    " + colunaOtima + "    " + aux);
 		for(int l = 0; l < x.numeroDeLinha; l++){//Este conjunto de loop procura o elemento mais perto do 1 e longe do 0
 			for(int c = 0; c < x.numeroDeColuna; c++){
 				if(0 != x.elemento[0][0].norma){
-					if(aux > Complexo.soma(x.elemento[l][c], menos1).norma / x.elemento[l][c].norma){
-						aux = Complexo.soma(x.elemento[l][c], menos1).norma / x.elemento[l][c].norma;
+					if(aux > Complexo.soma(x.elemento[l][c], menos1).norma * Complexo.soma(x.elemento[l][c], new Complexo(1, 0)).norma/ x.elemento[l][c].norma){
+						aux = Complexo.soma(x.elemento[l][c], menos1).norma * Complexo.soma(x.elemento[l][c], new Complexo(1, 0)).norma/ x.elemento[l][c].norma;
 						linhaOtima = l;
 						colunaOtima = c;
-						//System.out.println(linhaOtima + "    " + colunaOtima + "    " + aux);
+						System.out.println(linhaOtima + "    " + colunaOtima + "    " + aux);
 					}
 				}
 			}
 		}
-		Complexo dividirPor = x.elemento[linhaOtima][colunaOtima];//Todos os elementos da linha otima serão divididos por este elemento para obtermos o elemento 1
+		Complexo elementoOtimo = x.elemento[linhaOtima][colunaOtima];//Todos os elementos da linha otima serão divididos por este elemento para obtermos o elemento 1
 		int linhaCompensada = linhaOtima==0?1:0;
-		for(int c = 0; c < x.numeroDeColuna; c++){//Multiplica todos os elementos da linha otima por "dividirPor.pow(-1)"
-			x.elemento[linhaOtima][c] = Complexo.multiplicacao(x.elemento[linhaOtima][c], dividirPor.pow(-1));
-			x.elemento[linhaCompensada][c] = Complexo.multiplicacao(x.elemento[linhaOtima][c], dividirPor);
+		for(int c = 0; c < x.numeroDeColuna; c++){//Multiplica todos os elementos da linha otima por "elementoOtimo.pow(-1)"
+			x.elemento[linhaOtima][c] = Complexo.multiplicacao(x.elemento[linhaOtima][c], elementoOtimo.pow(-1));
+			x.elemento[linhaCompensada][c] = Complexo.multiplicacao(x.elemento[linhaCompensada][c], elementoOtimo);
 		}
 		
 		Matriz resposta = new Matriz(x.numeroDeLinha-1, x.numeroDeColuna-1);
