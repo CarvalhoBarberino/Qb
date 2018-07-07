@@ -82,8 +82,8 @@ public class Complexo{
 	public Complexo multiplicarPorI(){
 		return(new Complexo(-imaginario, real));
 	}
-	public boolean equals(Complexo Arg){
-		if((real == Arg.real) && (imaginario == Arg.imaginario)){
+	public boolean equals(Complexo arg){
+		if((real == arg.real) && (imaginario == arg.imaginario)){
 			return true;
 		}
 		else{
