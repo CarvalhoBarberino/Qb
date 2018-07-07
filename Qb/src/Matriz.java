@@ -54,6 +54,24 @@ public class Matriz{
 		return resultado;
 	}
 	//****
+	public void trocaLinha(int x, int y){
+		Complexo aux = new Complexo();
+		for(int c = 0; c < numeroDeColuna; c++){
+			aux = elemento[x][c];
+			elemento[x][c] = elemento[y][c];
+			elemento[y][c] = aux;
+		}
+	}
+	//****
+	public void trocaColuna(int x, int y){
+		Complexo aux = new Complexo();
+		for(int l = 0; l < numeroDeLinha; l++){
+			aux = elemento[l][x];
+			elemento[l][x] = elemento[l][y];
+			elemento[l][y] = aux;
+		}
+	}
+	//****
 	public static Matriz produtoTensorial(Matriz a, Matriz b){
 		Matriz resultado = new Matriz(a.numeroDeLinha*b.numeroDeLinha, a.numeroDeColuna*b.numeroDeColuna);
 		for(int la = 0; la < a.numeroDeLinha; la++){
