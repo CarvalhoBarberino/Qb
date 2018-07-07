@@ -72,6 +72,12 @@ public class Matriz{
 		}
 	}
 	//****
+	public void negativaLinha(int x){
+		for(int c = 0; c < numeroDeColuna; c++){
+			elemento[x][c] = elemento[x][c].negativo();
+		}
+	}
+	//****
 	public static Matriz produtoTensorial(Matriz a, Matriz b){
 		Matriz resultado = new Matriz(a.numeroDeLinha*b.numeroDeLinha, a.numeroDeColuna*b.numeroDeColuna);
 		for(int la = 0; la < a.numeroDeLinha; la++){
