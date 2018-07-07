@@ -74,4 +74,20 @@ public class Complexo{
 	public Complexo pow(double e){
 		return(Complexo.newPolar(Math.pow(norma, e), e * fase));
 	}
+	//****
+	public Complexo negativo(){
+		return(new Complexo(-real, -imaginario));
+	}
+	//****
+	public Complexo multiplicarPorI(){
+		return(new Complexo(-imaginario, real));
+	}
+	public boolean equals(Complexo Arg){
+		if((real == Arg.real) && (imaginario == Arg.imaginario)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }
