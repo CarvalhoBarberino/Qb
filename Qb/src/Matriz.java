@@ -95,7 +95,7 @@ public class Matriz{
 	public static Matriz chio(Matriz arg){//Este metodo usa a regra de chio para retornar uma matriz de tamanho menor porem com a mesma determinante
 		Matriz x = arg.clone();
 		Complexo c1 = new Complexo(1, 0);
-		int linhaOtima = 0, colunaOtima = 0;
+		int linhaPivot = 0, colunaPivot = 0;
 		int parametroPontuaçãoPivotExato = 0;
 		boolean matrizNula = true;
 		double raio = x.elemento[0][0].norma, aux;
@@ -105,7 +105,7 @@ public class Matriz{
 				raio = x.elemento[l][c].norma;
 				if(raio != 0){
 					matrizNula = false;
-					linhaOtima = l; colunaOtima = c;
+					linhaPivot = l; colunaPivot = c;
 					l = x.numeroDeLinha + 1; c = x.numeroDeColuna + 1;
 				}
 			}
@@ -117,59 +117,67 @@ public class Matriz{
 			for(int c = 0; c < x.numeroDeColuna; c++){
 				if(x.elemento[l][c].equals(c1) && (parametroPontuaçãoPivotExato < 4)){
 					parametroPontuaçãoPivotExato = 4;
-					linhaOtima = l; colunaOtima = c;
+					linhaPivot = l; colunaPivot = c;
 				}
 				if(x.elemento[l][c].equals(c1.negativo()) && (parametroPontuaçãoPivotExato < 3)){
 					parametroPontuaçãoPivotExato = 3;
-					linhaOtima = l; colunaOtima = c;
+					linhaPivot = l; colunaPivot = c;
 				}
 				if(x.elemento[l][c].equals(c1.multiplicarPorI()) && (parametroPontuaçãoPivotExato < 2)){
 					parametroPontuaçãoPivotExato = 2;
-					linhaOtima = l; colunaOtima = c;
+					linhaPivot = l; colunaPivot = c;
 				}
 				if(x.elemento[l][c].equals(c1.multiplicarPorI().negativo()) && (parametroPontuaçãoPivotExato < 1)){
 					parametroPontuaçãoPivotExato = 1;
-					linhaOtima = l; colunaOtima = c;
+					linhaPivot = l; colunaPivot = c;
 				}
 			}
 		}
 		
-		System.out.println(parametroPontuaçãoPivotExato+"pontuacao");
 		if(parametroPontuaçãoPivotExato == 0){//Caso não tenha encontrato um pivot apropriado no loop acima
 			for(int l = 0; l < x.numeroDeLinha; l++){
 				for(int c = 0; c < x.numeroDeColuna; c++){
 					raio = x.elemento[l][c].norma;
 					if(raio != 0){
 						if(aux > raio + 1 / raio){
-							linhaOtima = l; colunaOtima = c;
+							linhaPivot = l; colunaPivot = c;
 							aux = raio + 1 / raio;
 						}
 					}
 				}
 			}
 		}
-		Complexo elementoOtimo = x.elemento[linhaOtima][colunaOtima];//Todos os elementos da linha otima serão divididos por este elemento para obtermos o elemento 1
-		int linhaCompensada = (linhaOtima == 0) ? 1 : 0;//Impede que a linhaCompensada seja a linhaOtima
-		for(int c = 0; c < x.numeroDeColuna; c++){//Multiplica todos os elementos da linha otima por "elementoOtimo.pow(-1)"
-			x.elemento[linhaOtima][c] = Complexo.multiplicacao(x.elemento[linhaOtima][c], elementoOtimo.pow(-1));
-			x.elemento[linhaCompensada][c] = Complexo.multiplicacao(x.elemento[linhaCompensada][c], elementoOtimo);
-			x.elemento[linhaCompensada][c].mostrar();
+		
+		if(x.numeroDeLinha - 1 != linhaPivot){
+			x.trocaLinha(x.numeroDeLinha - 1, linhaPivot);
+			System.out.println("x.trocaLinha(" + (x.numeroDeLinha-1) + ", " + linhaPivot + ")");
+		}
+		else{x.negativaLinha(linhaPivot);
+		System.out.println("x.negativaLinha(" + linhaPivot + ")");
+		}
+		if(x.numeroDeColuna - 1 != colunaPivot){
+			x.trocaColuna(x.numeroDeColuna - 1, colunaPivot);
+			System.out.println("x.trocaColuna(" + (x.numeroDeColuna-1) + ", " + colunaPivot + ")");
+		}
+		else{x.negativaLinha(linhaPivot);
+			System.out.println("x.negativaLinha(" + linhaPivot + ")");
+		}
+		
+		Complexo elementoPivot = x.elemento[x.numeroDeLinha - 1][x.numeroDeColuna - 1];//Todos os elementos da linha pivot serão divididos por este elemento para obtermos o elemento 1
+		System.out.println("elementoPivot = " + elementoPivot.getString());
+		System.out.println("multiplica linha" + (x.numeroDeLinha-1) + "por " + elementoPivot.pow(-1).getString());
+		System.out.println("multiplica linha" + 0 + "por " + elementoPivot.getString());
+		for(int c = 0; c < x.numeroDeColuna; c++){//Multiplica todos os elementos da linha pivot por "elementoPivot.pow(-1)"
+			x.elemento[x.numeroDeLinha - 1][c] = Complexo.multiplicacao(x.elemento[x.numeroDeLinha - 1][c], elementoPivot.pow(-1));
+			x.elemento[0][c] = Complexo.multiplicacao(x.elemento[0][c], elementoPivot);
 		}
 		
 		Matriz resposta = new Matriz(x.numeroDeLinha-1, x.numeroDeColuna-1);
-		for(int l = 0; l < x.numeroDeLinha; l++){
-			int ln;
-			for(int c = 0; c < x.numeroDeColuna; c++){
-				int cn;
-				ln = l>linhaOtima?(l-1):l;
-				cn = c>colunaOtima?(c-1):c;
-				if((l != linhaOtima) && (c != colunaOtima)){
-					resposta.elemento[ln][cn] = Complexo.soma(x.elemento[l][c], Complexo.multiplicacao(x.elemento[l][colunaOtima], x.elemento[linhaOtima][c]).negativo());
-				}
+		for(int l = 0; l < x.numeroDeLinha - 1; l++){
+			for(int c = 0; c < x.numeroDeColuna - 1; c++){
+				resposta.elemento[l][c] = Complexo.soma(x.elemento[l][c], Complexo.multiplicacao(x.elemento[l][x.numeroDeColuna - 1], x.elemento[x.numeroDeLinha - 1][c]).negativo());
 			}
 		}
-		x.elemento[linhaOtima][colunaOtima].mostrar();
-		System.out.println(linhaOtima + "    " + colunaOtima);
 		return resposta;
 	}
 }
