@@ -19,7 +19,7 @@ public class Matriz{
 		String retornar = "";
 		for(int l = 0; l < numeroDeLinha; l++){
 			for(int c = 0; c < numeroDeColuna; c++){
-				retornar = retornar + elemento[l][c].getString() + " ";
+				retornar = retornar + elemento[l][c].getString() + "  ";
 			}
 			retornar = retornar + "\n";
 		}
@@ -54,7 +54,7 @@ public class Matriz{
 		return resultado;
 	}
 	//****
-	public void trocaLinha(int x, int y){
+	public void setTrocaLinha(int x, int y){
 		Complexo aux = new Complexo();
 		for(int c = 0; c < numeroDeColuna; c++){
 			aux = elemento[x][c];
@@ -63,7 +63,7 @@ public class Matriz{
 		}
 	}
 	//****
-	public void trocaColuna(int x, int y){
+	public void setTrocaColuna(int x, int y){
 		Complexo aux = new Complexo();
 		for(int l = 0; l < numeroDeLinha; l++){
 			aux = elemento[l][x];
@@ -72,9 +72,9 @@ public class Matriz{
 		}
 	}
 	//****
-	public void negativaLinha(int x){
+	public void setNegativaLinha(int x){
 		for(int c = 0; c < numeroDeColuna; c++){
-			elemento[x][c] = elemento[x][c].negativo();
+			elemento[x][c].setNegativo();
 		}
 	}
 	//****

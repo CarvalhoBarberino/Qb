@@ -1,7 +1,10 @@
 
 public class Main{
 	public static void main(String args[]){
-		Matriz a = new Matriz(2, 2);
+		
+		
+		
+		/*Matriz a = new Matriz(2, 2);
 		a.elemento[0][0] = new Complexo(1, 0);
 		a.elemento[0][1] = new Complexo(2, 0);
 		a.elemento[1][0] = new Complexo(3, 0);
@@ -14,7 +17,7 @@ public class Main{
 		b.elemento[2][0] = new Complexo(9, 0);
 		b.elemento[2][1] = new Complexo(10, 0);
 		Matriz c = Matriz.produtoTensorial(a, b);
-		c.mostrar();
+		c.mostrar();*/
 		
 		/*
 		Matriz a = new Matriz(2, 3);

@@ -44,16 +44,20 @@ public class Complexo{
 		return(Math.sqrt(real*real+imaginario*imaginario));
 	}
 	//****
+	public void setNorma(double normaArg){
+		setPolar(normaArg, fase);
+	}
+	//****
 	public void mostrarPolar() {
 		System.out.println(norma + " < " + fase*180/Math.PI);
 	}
 	//****
-	public void conjugado(){
+	public void setConjugado(){
 		imaginario = -imaginario;
 	}
 	//****
-	public Complexo conjugado(Complexo x){
-		return(new Complexo(x.real, -x.imaginario));
+	public Complexo getConjugado(){
+		return(new Complexo(real, -imaginario));
 	}
 	//****
 	public Complexo clone(){
@@ -71,15 +75,24 @@ public class Complexo{
 		fase = faseArg;
 	}
 	//****
-	public Complexo pow(double e){
+	public Complexo getPow(double e){
 		return(Complexo.newPolar(Math.pow(norma, e), e * fase));
 	}
 	//****
-	public Complexo negativo(){
+	public void setPow(double e){
+		setPolar(Math.pow(norma, e), e * fase);
+	}
+	//****
+		public void setNegativo(){
+			real = -real;
+			imaginario = -imaginario;
+		}
+	//****
+	public Complexo getNegativo(){
 		return(new Complexo(-real, -imaginario));
 	}
 	//****
-	public Complexo multiplicarPorI(){
+	public Complexo multiplicarPorImaginario(){
 		return(new Complexo(-imaginario, real));
 	}
 	public boolean equals(Complexo arg){
