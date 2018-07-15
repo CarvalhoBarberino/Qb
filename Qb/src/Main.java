@@ -1,7 +1,9 @@
 
 public class Main{
-	public static void main(String args[]){
-		
+	public static void main(String args[]) throws Exception{
+		Complexo x = new Complexo("0.54321 - i*6.955");
+		x.mostrar();
+		x.mostrarPolar();
 		
 		
 		/*Matriz a = new Matriz(2, 2);

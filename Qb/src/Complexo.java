@@ -21,6 +21,42 @@ public class Complexo{
 		}else {fase = 0;}
 	}
 	//****
+	private class StringForaDePadraoParaComplexo extends Exception{
+		public StringForaDePadraoParaComplexo(String msg){
+			super(msg);
+		}
+	}
+	//****
+	public Complexo(String arg) throws StringForaDePadraoParaComplexo{
+		String aux;
+		Double sinal = (double)1;
+		try{
+			int corteNoString = -2;
+			if((arg.indexOf(" + i*") == -1) ^ (arg.indexOf(" - i*") == -1)){
+				if(arg.indexOf(" + i*") != -1){
+					corteNoString = arg.indexOf(" + i*");
+				}
+				if(arg.indexOf(" - i*") != -1){
+					corteNoString = arg.indexOf(" - i*");
+					sinal = -sinal;
+				}
+			}
+			else{
+				throw new StringForaDePadraoParaComplexo("String fora de padrão de leitura para numeros complexos");
+			}
+			real = Double.valueOf(arg.substring(0, corteNoString));
+			aux = arg.substring(corteNoString + 5);
+			imaginario = sinal * Double.valueOf(aux);
+			norma = norma();
+			if(norma != 0) {
+				fase = Math.acos(real/norma);
+			}else {fase = 0;}
+		}catch(NumberFormatException e){
+			throw new StringForaDePadraoParaComplexo("String fora de padrão de leitura para numeros complexos");
+		}
+		
+	}
+	//****
 	public static Complexo soma(Complexo a, Complexo b){
 		return(new Complexo(a.real + b.real, a.imaginario + b.imaginario));
 	}
@@ -49,7 +85,7 @@ public class Complexo{
 	}
 	//****
 	public void mostrarPolar() {
-		System.out.println(norma + " < " + fase*180/Math.PI);
+		System.out.println(norma + " < " + (fase*180/Math.PI) + " graus");
 	}
 	//****
 	public void setConjugado(){
@@ -83,10 +119,10 @@ public class Complexo{
 		setPolar(Math.pow(norma, e), e * fase);
 	}
 	//****
-		public void setNegativo(){
-			real = -real;
-			imaginario = -imaginario;
-		}
+	public void setNegativo(){
+		real = -real;
+		imaginario = -imaginario;
+	}
 	//****
 	public Complexo getNegativo(){
 		return(new Complexo(-real, -imaginario));
