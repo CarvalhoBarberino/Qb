@@ -1,4 +1,3 @@
-
 public class Matriz{
 	int numeroDeLinha;
 	int numeroDeColuna;
@@ -12,6 +11,45 @@ public class Matriz{
 			for(int c = 0; c < numeroDeColuna; c++){
 				elemento[l][c] = new Complexo();
 			}
+		}
+	}
+	//****
+	public class StringForaDePadraoParaMatriz extends Exception{
+		public StringForaDePadraoParaMatriz(String msg){
+			super(msg);
+		}
+	}
+	//****
+	public Matriz(String arg) throws StringForaDePadraoParaMatriz{
+		String aux = "";
+		String aux2 = "";
+		try{
+			int nlinhas = Integer.valueOf(arg.substring(0, arg.indexOf("x")));
+			numeroDeLinha = nlinhas;
+			aux = arg.substring(arg.indexOf("x")+1, arg.length());
+			int ncolunas = Integer.valueOf(aux.substring(0, aux.indexOf(" ")));
+			numeroDeColuna = ncolunas; 
+			aux = aux.substring(aux.indexOf(" ")+1, aux.length()) + "  ";
+			elemento = new Complexo[nlinhas][ncolunas];
+			for(int l = 0; l < nlinhas; l++){
+				for(int c = 0; c < ncolunas; c++){
+					int valorDaQuebra = 0;
+					for(int p = 0; p < aux.length(); p++){
+						if(valorDaQuebra > 2){
+							aux2 = aux.substring(0, p-1);
+							elemento[l][c] = new Complexo(aux2);
+							aux = aux.substring(p, aux.length());
+							break;
+						}
+						if(aux.charAt(p) == ' '){valorDaQuebra++;}
+						if(aux.charAt(p) == "\n".charAt(0)){valorDaQuebra = 3;}
+						
+					}
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new StringForaDePadraoParaMatriz("String fora de padrão de leitura para matrizes");
 		}
 	}
 	//****

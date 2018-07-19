@@ -1,9 +1,9 @@
 
 public class Main{
 	public static void main(String args[]) throws Exception{
-		Complexo x = new Complexo("0.54321 - i*6.955");
+		Matriz x = new Matriz("2x3 1 + i*0 7 - i*5\n-1.555 + i*3.21 -51 - i*31.189\n-18 - i*41 -1.5 - i*-1.5");
 		x.mostrar();
-		x.mostrarPolar();
+		
 		
 		
 		/*Matriz a = new Matriz(2, 2);
