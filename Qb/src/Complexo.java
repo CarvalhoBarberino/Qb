@@ -21,13 +21,7 @@ public class Complexo{
 		}else {fase = 0;}
 	}
 	//****
-	private class StringForaDePadraoParaComplexo extends Exception{
-		public StringForaDePadraoParaComplexo(String msg){
-			super(msg);
-		}
-	}
-	//****
-	public Complexo(String arg) throws StringForaDePadraoParaComplexo{
+	public Complexo(String arg) throws IllegalArgumentException{
 		String aux;
 		Double sinal = (double)1;
 		try{
@@ -42,7 +36,7 @@ public class Complexo{
 				}
 			}
 			else{
-				throw new StringForaDePadraoParaComplexo("String fora de padrão de leitura para numeros complexos");
+				throw new IllegalArgumentException("String fora de padrão de leitura para numeros complexos");
 			}
 			real = Double.valueOf(arg.substring(0, corteNoString));
 			aux = arg.substring(corteNoString + 5);
@@ -52,9 +46,8 @@ public class Complexo{
 				fase = Math.acos(real/norma);
 			}else {fase = 0;}
 		}catch(NumberFormatException e){
-			throw new StringForaDePadraoParaComplexo("String fora de padrão de leitura para numeros complexos");
+			throw new IllegalArgumentException("String fora de padrão de leitura para numeros complexos");
 		}
-		
 	}
 	//****
 	public static Complexo soma(Complexo a, Complexo b){

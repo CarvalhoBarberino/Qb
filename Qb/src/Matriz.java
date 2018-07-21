@@ -14,13 +14,7 @@ public class Matriz{
 		}
 	}
 	//****
-	public class StringForaDePadraoParaMatriz extends Exception{
-		public StringForaDePadraoParaMatriz(String msg){
-			super(msg);
-		}
-	}
-	//****
-	public Matriz(String arg) throws StringForaDePadraoParaMatriz{
+	public Matriz(String arg) throws IllegalArgumentException{
 		String aux = "";
 		String aux2 = "";
 		try{
@@ -49,7 +43,7 @@ public class Matriz{
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			throw new StringForaDePadraoParaMatriz("String fora de padrão de leitura para matrizes");
+			throw new IllegalArgumentException("String fora de padrão de leitura para matrizes");
 		}
 	}
 	//****
@@ -129,7 +123,9 @@ public class Matriz{
 		}
 		return resultado;
 	}
-	public static Matriz chio(Matriz arg){//Este metodo usa a regra de chio para retornar uma matriz de tamanho menor porem com a mesma determinante
+	//****
+	public static Matriz chio(Matriz arg) throws IllegalArgumentException{//Este metodo usa a regra de chio para retornar uma matriz de tamanho menor porem com a mesma determinante
+		if(arg.numeroDeColuna != arg.numeroDeLinha){throw new IllegalArgumentException("A matriz deve ser quadrada");}
 		Matriz x = arg.clone();
 		Complexo c1 = new Complexo(1, 0);
 		int linhaPivot = 0, colunaPivot = 0;
@@ -204,5 +200,19 @@ public class Matriz{
 			}
 		}
 		return resposta;
+	}
+	//****
+	public static Matriz chioAte1x1(Matriz x) throws IllegalArgumentException{
+		if(x.numeroDeLinha > 1){
+			return(Matriz.chioAte1x1((Matriz.chio(x))));
+		}
+		else{
+			return x;
+		}
+	}
+	//****
+	public static Complexo determinante(Matriz arg) throws IllegalArgumentException{
+		Complexo det = Matriz.chioAte1x1(arg).elemento[0][0];
+		return det;
 	}
 }

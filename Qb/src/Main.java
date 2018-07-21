@@ -2,11 +2,7 @@
 public class Main{
 	public static void main(String args[]) throws Exception{
 		Matriz x = new Matriz("3x3 1 + i*0 7 - i*5 -1.555 + i*3.21 -51 - i*31.189\n-18 - i*41 -1.5 - i*-1.5 1 + i*0 3 + i*5 -2 + i*3.5");
-		x.mostrar();
-		x = Matriz.chio(x);
-		x = Matriz.chio(x);
-		x.mostrar();
-		
+		Matriz.determinante(x).mostrar();
 		
 		/*Matriz a = new Matriz(2, 2);
 		a.elemento[0][0] = new Complexo(1, 0);
