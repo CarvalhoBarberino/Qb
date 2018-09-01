@@ -17,7 +17,7 @@ public class Complexo{
 		imaginario = i;
 		norma = norma();
 		if(norma != 0) {
-			fase = Math.asin(imaginario/norma);
+			fase = Math.acos(real/norma) * Math.signum(imaginario);
 		}else {fase = 0;}
 	}
 	//****
