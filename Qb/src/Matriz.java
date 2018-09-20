@@ -215,4 +215,34 @@ public class Matriz{
 		Complexo det = Matriz.chioAte1x1(arg).elemento[0][0];
 		return det;
 	}
+	//****
+	public static double normaEuclidiana(Matriz m){
+		double resultado = 0, aux;
+		for(int l = 0; l < m.numeroDeLinha; l++){
+			for(int c = 0; c < m.numeroDeColuna; c++){
+				aux = m.elemento[l][c].norma;
+				resultado = resultado + aux * aux;
+			}
+		}
+		return Math.sqrt(resultado);
+	}
+	//****
+	public static Matriz soma(Matriz a, Matriz b) throws IllegalArgumentException{
+		if((a.numeroDeLinha != b.numeroDeLinha) || (a.numeroDeColuna != b.numeroDeColuna)){throw new IllegalArgumentException("As dimensoes das matrizes devem ser iguais");}
+		Matriz resultado = new Matriz(a.numeroDeLinha, a.numeroDeColuna);
+		for(int l = 0; l < a.numeroDeLinha; l++){
+			for(int c = 0; c < a.numeroDeColuna; c++){
+				resultado.elemento[l][c] = Complexo.soma(a.elemento[l][c], b.elemento[l][c]);
+			}
+		}
+		return resultado;
+	}
+	//****
+	public static Matriz setNegativaMatriz(Matriz arg){
+		Matriz resultado = arg.clone();
+		for(int l = 0; l < arg.numeroDeLinha; l++){
+			resultado.setNegativaLinha(l);
+		}
+		return resultado;
+	}
 }
